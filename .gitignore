@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+.venv/
+venv/
+
+# Environment variables
+.env
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# WSL / local junk
+wsl/

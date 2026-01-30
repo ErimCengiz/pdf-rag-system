@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - hf_models:/models
+      - ./backend/db.sqlite3:/app/backend/db.sqlite3        
+    depends_on:
+      - qdrant
+    environment:
+      - PYTHONUNBUFFERED=1
+      - HUGGINGFACE_HUB_TOKEN=${your_token_is_here}     
+      - TRANSFORMERS_CACHE=/models
+      - HF_HOME=/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  qdrant_data:
+  hf_models:

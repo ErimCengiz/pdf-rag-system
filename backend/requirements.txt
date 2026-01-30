@@ -1,0 +1,13 @@
+Django>=4.2
+djangorestframework
+qdrant-client>=1.7.0
+sentence-transformers
+transformers
+torch
+accelerate
+bitsandbytes
+PyMuPDF
+requests
+gunicorn
+
+
